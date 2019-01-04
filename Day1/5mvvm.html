@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+
+</head>
+<body>
+<div id="app">
+    {{msg}}
+    <!--可以双向绑定的  表单元素 input checkbox textarea radio select -->
+    <!--vue的指令映射到数据层  directive  只是dom上的行间属性 vue给这类属性赋予一定的意义
+     来实现特殊的功能所有指令都以v-开头  value属性默认情况下会被vue忽略掉 selected checked都没有意义-->
+    <!--v-model会将msg的值赋予输入框中，输入框中的值改变会影响数据msg-->
+    <input type="text" v-model=" msg">
+    <!--Object.defineProperty ES5见5.Object.defineProperty.html-->
+</div>
+<script src = "node_modules/vue/dist/vue.js"></script>
+<script>
+    //引入vue会白给一个vue的构造函数
+    let vm = new Vue({
+        el:"#app",//告诉vue
+        data:{//data中的数据会被vm代理
+            msg:'hello，zfpx'//可以通过vm.msg来获取到对应的内容 和对应的赋值
+        }
+    })
+
+</script>
+</body>
+</html>

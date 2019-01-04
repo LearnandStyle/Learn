@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+
+</head>
+<body>
+<div id="app">
+    <!--{{是小胡子语法，表达式，可以放赋值，取值，三元表达式}}-->
+    这个范围内被vue管理{{msg}}
+    {{msg ==='hello，zfpx'?1:0}}
+</div>
+<script src = "node_modules/vue/dist/vue.js"></script>
+<script>
+    //引入vue会白给一个vue的构造函数
+    let vm = new Vue({
+        el:"#app",//告诉vue
+        data:{//data中的数据会被vm代理
+            msg:'hello，zfpx'//可以通过vm.msg来获取到对应的内容 和对应的赋值
+        }
+    })
+
+</script>
+</body>
+</html>

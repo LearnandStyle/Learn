@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="msg">
+    <!--{{msg}}在上面的话会先有bug，先出现{{}}而后消失-->
+    <div v-text="msg"></div><!--div里面不能写内容，一闪而过-->
+    <!--v-text==={{}} 防止{{}}出现在页面上-->
+
+    <!--v-once只绑定一次，当数据再发生变化也不导致页面刷新-->
+    <div v-once>
+        {{msg}} {{msg}}
+    </div>
+    <!--v-html 把html字符当作html渲染 ，把普通的html当成dom渲染一定是可以信任的html-->
+    <div v-html="p"></div>
+
+</div>
+<script src = "node_modules/vue/dist/vue.js"></script>
+<script>
+    //引入vue会白给一个vue的构造函数
+    let vm = new Vue({
+        el:"#app",//告诉vue
+        data:{//data中的数据会被vm代理
+            msg:'hello，zfpx',//可以通过vm.msg来获取到对应的内容 和对应的赋值
+            p:'<h1>hello</h1>'
+        }
+    })
+
+</script>
+</body>
+</html>
