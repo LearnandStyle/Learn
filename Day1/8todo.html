@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+    <!--<input type="text" v-model="val" @keyup = "add" >-->
+    <!--@keyup.enter  @keyup.ctrl.enter  @keyup.13  @keyup.a...vue中的键盘修饰符   modifiers-->
+    <input type="text" v-model="val" @keyup.enter = "add" >
+    <ul>
+        <li v-for="a in arr">{{a}} <button @click = "remove(index)">删除</button></li>
+    </ul>
+</div>
+<script src = "node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm  = new Vue({
+        el:'#app',
+        methods:{
+            add(e){
+
+                // if (e.keyCode===13) {//e.keyCode===13处理dom细节
+                    this.arr.unshift(this.val);
+                    this.val = '';
+                    console.log(this)//vue实例
+                // }
+
+            },
+            remove(){
+                this.arr = this.arr.filter((item,index) =>index !== i)
+            }
+        },
+        data:{
+            arr:[],
+            val:''
+        }
+    });//去改变数组中的某一项控制不到   错误：vm.arr[0]=100;
+    // vm.arr[0] =100;
+    //数组的变异方法:pop push shift unshift  sort reverse splice
+    vm.arr = vm.arr.map(item=>item*=2)//filter map
+</script>
+</body>
+</html>
