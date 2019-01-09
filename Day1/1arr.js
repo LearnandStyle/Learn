@@ -2,9 +2,6 @@
 * forEach map(映射) filter(过滤） some every reduce  (includes find in ES6)
 * 考虑的：是否改变原数组  返回结果    回调函数的返回结果
 * */
-
-
-
 console.log('ok');
 //配置npm和语法
 //file的setting中配置

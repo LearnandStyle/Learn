@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<div id="app"></div>
+<script src = "node_modules/vue/dist/vue.js"></script>
+<!--axios给予promise的-->
+<script src="./4promise-ajax.js"></script>
+<script>
+    let vm = new Vue({
+        el:"#app",
+        //created专门用来发送ajax方法
+        created(){//在数据被初始化后会调用，this指向vm实例 钩子函数  重写的axios利用ajax和promise
+            ajax({url:'./2-4carts.json'}).then((res)=>{
+                console.log(res)
+
+            },(err)=>{
+                console.log(err);
+            })
+            // axios.get('./2-4carts.json').then( res => {//success  箭头函数里面的this是实例
+            //     // console.log(res.data)
+            //     this.products = res.data
+            // },err => {//err
+            //     console.log(err);
+            // })
+
+        },
+        data:{
+            products:[]
+
+        }
+    })
+</script>
+</body>
+</html>

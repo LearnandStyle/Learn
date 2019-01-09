@@ -1,4 +1,8 @@
 ## vue 学习第一天
+
+- vue安装axios和bootstrap
+ - vue install axios bootstrap
+
 - vm =>viewModel数据最终会被vm代理
 - {{a}} 取值表达式，通过{{}}来进行取值，默认可以不写this，表达式 赋值运算 计算 三元表达式
 尽量少写逻辑(computed)
