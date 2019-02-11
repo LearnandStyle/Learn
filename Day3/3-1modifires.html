@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div id="app">
+    <!--案例报错 first不执行-->
+    <!--stopPropagation阻止事件传播-->
+    <div @clcik.capture = "First">First
+        <div @click="child">child
+            <div @click="grandson">grandson</div>
+        </div>
+    </div>
+    <!--<div @clcik ="parent">parent </div>-->
+    <!--<div @click="First">balabala</div>-->
+    <a href="http://www.baidu.com" @click.prevent="parent"> 百度</a>
+</div>
+<script src = "node_modules/vue/dist/vue.js"></script>
+<script>
+    let  vm = new Vue({
+        el:'#app',
+        methods:{
+            First(){alert('First')},
+            parent(){alert('111')},
+            child(){alert('child')},
+            grandson(e){alert('grandson');
+        // e.cancelBubble();
+        // e.stopPropagation();
+                //.capture捕获
+        }
+        //    e.cancelBubble(IE) e.stopPropagation()阻止冒泡事件 vue阻止事件冒泡@click.stop="
+    }
+    })
+</script>
+</body>
+</html>
