@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .x{ background: blue; }
+        .y{ font-size: 30px;}
+        .z{color:pink}
+    </style>
+</head>
+<body>
+<div id="app">
+    <!--:classs绑定的样式和class绑定的不冲突-->
+    <!--1）{className：isActive}-->
+    <div  class="x" :class="{z:flag,y:true}">我很帅</div>
+    <div class="x" :class="[class1,class2,'z']">你狠没</div>
+    <div class="x" :class="[class1,class2,{z:false}]">你狠没2</div>
+    <div class="x" :class="{true:'x',false:'y'}[true]">你狠没3</div>
+    <div v-for="(a,index) in 10" :class="{x:index%2}">{{a}}</div>
+</div>
+<script src = "node_modules/vue/dist/vue.js"></script>
+<script>
+    //class="a b c" style="background-color"-->
+    //第一种个、方式是对象 第二种方式是数组
+    let  vm = new Vue({
+        el:'#app',
+        data:{
+            class1:"x",
+            class2:'y',
+            flag:true
+        }
+
+    })
+
+</script>
+</body>
+</html>

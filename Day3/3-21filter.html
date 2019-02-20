@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div id="app1">{{'hello' | my}}</div>
+<div id="app2">{{'hello' | my}}</div>
+<script src = "node_modules/vue/dist/vue.js"></script>
+<script>
+    Vue.filter('my',(data)=> {//全局过滤器 要放在实例的前面
+        return 'jw'+data;
+    })
+    let  vm1 = new Vue({
+        el:'#app1'
+    })
+    let  vm2 = new Vue({
+        el:'#app2'
+    })
+</script>
+</body>
+</html>
