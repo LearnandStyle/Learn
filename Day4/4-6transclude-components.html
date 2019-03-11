@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+
+</div>
+<script src = "node_modules/vue/dist/vue.js"></script>
+<script>
+    /*目标结构
+    *<div class="parent">
+        <div class="son">
+            <div class="grandson"></div>
+        </div>
+    </div>
+    *
+    * */
+    let parent = {template:'<div>parent</div>'};
+    let son = {template:'<div>son</div>'};
+    let grandson = {template:'<div>grandson</div>'};
+    let vm = new Vue({
+        el:"#app",
+        data:{
+
+        }
+    })
+</script>
+</body>
+</html>

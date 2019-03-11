@@ -40,7 +40,7 @@
                         <input type="number" v-model.number="product.productCount " min="0">
                     </td>
                     <td>
-                        <!--| 管道符  原数据不变的情况下，只改变显示的效果-->
+                        <!-- | 管道符  原数据不变的情况下，只改变显示的效果-->
                         {{product.productCount * product.productPrice | toFixed(2)}}
                     </td>
                     <td><button class="btn btn-danger" @click="remove(product)">删除</button></td>
@@ -48,7 +48,7 @@
                 <tr >
                     <td colspan="6">
                         <!--{{sum()}}数据一变化就改变，算出最新结果，没有缓存功能，computed可以解决这一问题-->
-                        总价:{{sum()|toFixed(2)}}
+                        总价:{{sum() | toFixed(2)}}
                     </td>
                 </tr>
             </table>
@@ -83,16 +83,15 @@
 
             },
             remove(p){//p代表的是当前点击的这一项[ooo,xxx,ppp,p]
-                this.products = this.products.filter(item => item!==p)//相等就删掉
+                this.products = this.products.filter(item => item!==p);//相等就删掉
             },
             change(){
                 // alert(this.checkAll)
                 //根据当前自己的状态设置其他的状态，实现全选和反选
-                this.products.forEach(item => item.isSelected=this.checkAll)
+                this.products.forEach(item => item.isSelected=this.checkAll);
             },
             checkOne(){//根据下面点击的结果控制上面全选的结果
                 this.checkAll = this.products.every(item => item.isSelected);
-
             },
             sum(){
                 return this.products.reduce((prev, next)=>{

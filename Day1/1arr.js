@@ -64,11 +64,11 @@ let arr = [1,2,3,4,5];
 // });
 // console.log(result)//找到返回true 找不到返回false
 //7)every  找false 找到false后停止返回false
-// var arr4 = [1,2,3,4,55];
-// let result  = arr4.every(function (item,index) {//找到具体的某一项用find
-//     return item.toString().indexOf(5)>-1;
-// });
-// console.log(result)//第一个就false 返回了
+var arr4 = [1,2,3,4,55];
+let result  = arr4.every(function (item,index) {//找到具体的某一项用find
+    return item.toString().indexOf(5)>-1;
+});
+console.log(result)//第一个就false 返回了  result是false
 
 //8）reduce  收敛  4个参数   返回的是叠加后的结果
 // 原数组不变 回调函数返回的结果：
@@ -93,8 +93,8 @@ let arr = [1,2,3,4,5];
     // console.log(sum2)//求和 15
 
     // iii)
-    let flat = [[1,2,3],[4,5,6],[7,8,9]].reduce(function(prev,next){
-        return prev.concat(next);
-});
-    console.log(flat)//[ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+//     let flat = [[1,2,3],[4,5,6],[7,8,9]].reduce(function(prev,next){
+//         return prev.concat(next);
+// });
+//     console.log(flat)//[ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
 
