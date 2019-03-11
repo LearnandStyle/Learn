@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="app">
+    <loading ref="load"></loading>
+</div>
+<script src = "../node_modules/vue/dist/vue.js"></script>
+<script>
+    //父组件调用子组件的方法
+    let loading = {
+        data(){
+            return {flag:true}
+        },
+        template:'<div v-show="flag">疯狂加载中。。。。</div>',
+        mothods:{
+            hide(){
+              this.flag =false;
+            }
+        }
+    };
+    let vm = new Vue({
+        el: '#app',
+        data: {},
+        mounted(){
+            this.$refs.load.hide();
+            // this.$refs.load.$el.style.background = 'red'
+        },
+        components:{
+            loading
+        }
+    });
+</script>
+</body>
+</html>

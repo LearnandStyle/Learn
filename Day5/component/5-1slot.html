@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="app">
+    <!--modal的内容均属于当前模板的，只有属性名是属于当前组件的-->
+   <modal>
+       <h1 slot="title" m="1">是否删除？</h1>
+       <p slot="content" @click="fn">确认删除吗？ fn是父级的，和h1里面加个属性m='1'</p>
+   </modal>
+</div>
+<!--模板中只能有一个根元素，可以通过元素属性定制模板-->
+<!--slot中可以放置一些默认内容，如果传递了内容则替换掉-->
+<!--slot作用：定制模板-->
+<!--slot没有名字的标签默认放置到default中-->
+<template id="modal">
+    <div>
+        <slot name="title"><a href="baidu.com"></a>默认标题</slot>
+        <slot name="content">默认内容</slot>
+        <slot name="default">这是一个默认标题</slot>
+    </div>
+</template>
+<script src = "../node_modules/vue/dist/vue.js"></script>
+<script>
+    let modal = {
+        template:"#modal"
+    };
+    let vm = new Vue({
+        el: '#app',
+        components:{
+            modal
+        },
+        methods:{
+            fn(){
+                alert('1000')
+            }
+        },
+        data: {},
+
+    });
+</script>
+</body>
+</html>

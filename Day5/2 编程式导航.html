@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<!--前后端分离 后端只负责提供接口供前端调用  像跳转都是前端自己处理的  hash模式 #/a  不会导致404，开发时使用 hash不支持seo
+    h5的history.pushState开发时会导致404问题 上线的时候可以选用-->
+<div id="app">
+    <!--router-view是一个全局组件 可以直接使用-->
+    <router-link to="/home">首页</router-link>
+    <router-link to="/list">列表页</router-link>
+    <router-view></router-view>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/vue-router/dist/vue-router.js"></script>
+<script>
+    let home = {
+        template:'<div>首页</div>'
+    };
+    let list = {
+        template:'<div>列表页</div>'
+    };
+    let routes = [//路由的映射表  配置路径和组件的关系
+        {path:'/home',component:home},//配置的关系就是页面级组件  路径必须加/
+        {path:'/list',component:list}
+    ]
+    let router = new  VueRouter({//引入vue-router自带VueRouter类
+        // routes:routes//第一个routes和methods一样必须写的路由表  可以简写成 routes
+       mode:'history',//h5模式
+        routes
+    });
+    let vm = new Vue({
+        el:'#app',
+        // router:router
+        router, //注册
+    })
+</script>
+</body>
+</html>
+<script>

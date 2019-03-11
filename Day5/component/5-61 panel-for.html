@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div id="app">
+    <panel :type="artical.type" @say-title="parent" v-for="(artical,index) in articals" :key="index">  <!--注意属性不能用sayTitle 可以使用say-Title saytitle            :key="index"一定要加-->
+        <div slot="title"><span v-html="artical.title"></span></div>
+        <div slot="content">{{artical.content}}</div>
+        <div v-if="artical.auth">{{artical.auth}}</div>
+        <!--<div slot="foot">作者：zfpx</div>-->
+        <!--<div>作者：zfpx</div>-->
+    </panel>
+</div>
+<!--子组件模板-->
+<template id="panel">
+    <div class="panel" :class="[color]">
+        <div class="panel-heading" ref="head">
+            <slot name="title"></slot>
+        </div>
+        <div class="panel-body">
+            <slot name="content"></slot>
+        </div>
+        <div class="panel-footer">
+            <slot>匿名</slot><!--不传的时候默认的-->
+            <button @click="say">点我说标题</button>
+        </div>
+    </div>
+</template>
+<script src = "../node_modules/vue/dist/vue.js"></script>
+<script>
+    let panel ={
+        template:"#panel",
+        created(){
+            console.log(this.type)//能拿到
+            // this.type = "panel-"+this.type;//报错 子不能更改父级传递过来的属性
+        },
+        computed:{
+            color(el, bindings) {
+                return "panel-"+this.type;
+            }
+        },
+        props:{
+            type:{//this.type='primary'
+                type:[String],//数组元素的类型 子不能更改父组件传递过来的属性
+                default:"default"
+            }
+        },
+        methods:{
+            say(){
+                this.$emit('say-title',this.$refs.head.innerText)
+            }
+        }
+    };
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            articals:[
+                {type:"warning",title:"<h2>vue</h2>",content:"这是vue的文章",auth:"zfpx"},
+                {type:"danger",title:"<h2>angular</h2>",content:"这是angular的文章"},
+                {type:"primary",title:"<h2>react</h2>",content:"这是react的文章"},
+
+            ]
+        },
+        components:{
+            panel
+        },
+        methods:{
+            parent(tit){
+                alert(tit)
+            }
+        }
+    })
+</script>
+</body>
+</html>

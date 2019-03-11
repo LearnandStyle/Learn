@@ -1,0 +1,99 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+    <!--<meta charset="UTF-8">-->
+    <!--<title></title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div id="app">-->
+    <!--<loading ref="load">-->
+        <!---->
+    <!--</loading>-->
+
+<!--</div>-->
+<!--<script src = "node_modules/vue/dist/vue.js"></script>-->
+<!--<script>-->
+    <!--//父组件调用子组件的方法-->
+    <!--var loading = {-->
+        <!--data(){-->
+            <!--return {flag:true}-->
+        <!--},-->
+        <!--template:'<div v-show="flag">疯狂加载中</div>',-->
+        <!--mothods:{-->
+          <!--hide(){-->
+              <!--this.flag =false;-->
+            <!--}-->
+        <!--}-->
+    <!--};-->
+    <!--console.log(loading);-->
+    <!--let vm = new Vue({-->
+        <!--el: '#app',-->
+        <!--data: {},-->
+        <!--mounted(){//ref如果放在组件上获取的是组件的实例，并不是组件的dom元素-->
+            <!--// this.$refs.load.hide();-->
+            <!--console.log(this.$refs.load)-->
+            <!--// this.$refs.load.$el.style.background = 'red'-->
+        <!--},-->
+        <!--components:{-->
+            <!--loading-->
+        <!--}-->
+    <!--});-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
+
+<!--上面的是错误的，下面的正确-->
+<!DOCTYPE html>
+<html>
+<head>
+      <meta charset="utf-8">
+</head>
+<body>
+  <div id="app">
+        <loading ref='load'></loading>
+        <button type="button" @click='show'>显示</button>
+        <button type="button" @click='hide'>隐藏</button>
+        <button type="button" @click='changeColor'>变色</button>
+      </div>
+</body>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script type="text/javascript">
+    let loading = {
+        data() {
+            return {
+                flag: true
+            }
+        },
+        template: '<div v-show="flag">loading...</div>',
+        methods: {
+            hide() {
+                this.flag = false
+            },
+            show() {
+                this.flag = true
+            }
+        }
+    }
+    let vm = new Vue({
+        el: '#app',
+        components: {
+            loading
+        },
+        methods: {
+        //     // 在组件上的ref获取组件实例
+        //     // 标签的ref 获得标签的dom
+        //     // 使用refs 获取组件实例，然后调用组件的方法即可
+            hide() {
+                this.$refs.load.hide()
+            },
+            show() {
+                this.$refs.load.show()
+            },
+            changeColor() {
+        //         // 获取dom实例 操作样式
+                this.$refs.load.$el.style.background = 'red'
+            }
+        }
+    })
+</script>
+</html>

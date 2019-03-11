@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="app">
+    <!--自带的组件 slot template transition-->
+    <!--<components is="home"></components>-->
+    <!--<components is="list"></components>-->
+    <input type="radio" v-model="radio" value="home">home
+    <input type="radio" v-model="radio" value="list">list
+    <keep-alive>
+        <!--keep-alive里面缓存的是组件，为的是后面的路由做准备  如果缓存了就不会再走mounted created等钩子函数了-->
+        <!--子组件和父组件同时拥有mounted方法，会先走谁-->
+        <component :is="radio"></component>
+    </keep-alive>
+
+</div>
+<script src = "../node_modules/vue/dist/vue.js"></script>
+<script>
+    let  home ={
+        template:"<div>home</div>",
+        mounted(){alert("挂载")/*页面创建就执行一次*/},
+
+        beforeDestroy() {
+            alert("销毁home")
+        }
+    };
+    let list = {
+        template:"<div>list</div>",
+        mounted(){alert("挂载")/*页面创建就执行一次*/},
+        beforeDestroy() {
+            alert("销毁list")
+        }
+    };
+    let vm = new Vue({
+        el: '#app',
+        data: {radio:"home"},
+        mounted(){
+
+        },
+        components:{
+            home,list
+        }
+    });
+</script>
+</body>
+</html>

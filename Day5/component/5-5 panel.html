@@ -1,0 +1,164 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+    <!--<meta charset="UTF-8">-->
+    <!--<title></title>-->
+    <!--<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">-->
+<!--</head>-->
+<!--<body>-->
+<!--<div id="app">-->
+    <!--<panel type="primary"></panel>-->
+<!--</div>-->
+<!--<template id="panel">-->
+    <!--<div class="panel" :class="['panel-'+type]">-->
+        <!--<div class="panel-heading"></div>-->
+        <!--<div class="panel-body"></div>-->
+        <!--<div class="panel-footer"></div>-->
+    <!--</div>-->
+<!--</template>-->
+<!--<script src = "node_modules/vue/dist/vue.js"></script>-->
+<!--<script>-->
+    <!--let panel ={-->
+        <!--template:"#panel",-->
+        <!--created(){-->
+            <!--console.log(this.type)//能拿到-->
+            <!--// this.type = "panel-"+this.type;//报错 子不能更改父级传递过来的属性-->
+        <!--},-->
+        <!--props:{-->
+            <!--type:{//this.type='primary'-->
+                <!--type:[String],//数组元素的类型 子不能更改父组件传递过来的属性-->
+                <!--default:"default"-->
+            <!--}-->
+        <!--}-->
+    <!--};-->
+   <!--let vm = new Vue({-->
+       <!--el:"#app",-->
+       <!--data:{-->
+
+       <!--},-->
+       <!--components:{-->
+         <!--panel-->
+       <!--}-->
+   <!--})-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+    <!--<meta charset="UTF-8">-->
+    <!--<title></title>-->
+    <!--<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">-->
+<!--</head>-->
+<!--<body>-->
+<!--<div id="app">-->
+    <!--<panel type="primary"></panel>-->
+    <!--<panel type="warning"></panel>-->
+    <!--<panel type="danger"></panel>-->
+
+<!--</div>-->
+<!--<template id="panel">-->
+    <!--<div class="panel" :class="[color]">-->
+        <!--<div class="panel-heading"></div>-->
+        <!--<div class="panel-body"></div>-->
+        <!--<div class="panel-footer"></div>-->
+    <!--</div>-->
+<!--</template>-->
+<!--<script src = "node_modules/vue/dist/vue.js"></script>-->
+<!--<script>-->
+    <!--let panel ={-->
+        <!--template:"#panel",-->
+        <!--created(){-->
+            <!--console.log(this.type)//能拿到-->
+            <!--// this.type = "panel-"+this.type;//报错 子不能更改父级传递过来的属性-->
+        <!--},-->
+        <!--computed:{-->
+            <!--color(el, bindings) {-->
+                <!--return "panel-"+this.type;-->
+            <!--}-->
+        <!--},-->
+        <!--props:{-->
+            <!--type:{//this.type='primary'-->
+                <!--type:[String],//数组元素的类型 子不能更改父组件传递过来的属性-->
+                <!--default:"default"-->
+            <!--}-->
+        <!--}-->
+    <!--};-->
+    <!--let vm = new Vue({-->
+        <!--el:"#app",-->
+        <!--components:{-->
+            <!--panel-->
+        <!--}-->
+    <!--})-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
+
+<!--插槽版-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div id="app">
+    <panel type="warning">
+        <div slot="title">这是一篇vue的使用</div>
+        <div slot="content">内容区
+            <p>组件的属性传递</p>
+            <p>slot的用法</p>
+            <p>ref的使用</p>
+            <p>nextTick的用法</p>
+        </div>
+        <!--<div slot="foot">作者：zfpx</div>-->
+        <!--<div>作者：zfpx</div>-->
+    </panel>
+
+</div>
+<template id="panel">
+    <div class="panel" :class="[color]">
+        <div class="panel-heading">
+            <slot name="title"></slot>
+        </div>
+        <div class="panel-body">
+            <slot name="content"></slot>
+        </div>
+        <div class="panel-footer">
+            <slot>匿名</slot><!--不传的时候默认的-->
+        </div>
+    </div>
+</template>
+<script src = "../node_modules/vue/dist/vue.js"></script>
+<script>
+    let panel ={
+        template:"#panel",
+        created(){
+            console.log(this.type)//能拿到
+            // this.type = "panel-"+this.type;//报错 子不能更改父级传递过来的属性
+        },
+        computed:{
+            color(el, bindings) {
+                return "panel-"+this.type;
+            }
+        },
+        props:{
+            type:{//this.type='primary'
+                type:[String],//数组元素的类型 子不能更改父组件传递过来的属性
+                default:"default"
+            }
+        }
+    };
+    let vm = new Vue({
+        el:"#app",
+        components:{
+            panel
+        }
+    })
+</script>
+</body>
+</html>

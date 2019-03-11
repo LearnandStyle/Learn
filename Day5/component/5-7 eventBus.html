@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="app">
+   <brother1></brother1>
+    <brother2></brother2>
+</div>
+<script src = "../node_modules/vue/dist/vue.js"></script>
+<script>
+    let eventBus = new Vue;
+    let brother1 = {
+        template:'<div>{{color}} <button @click="change">变绿</button></div>',
+        data(){
+            return {color:'绿色',old:"绿色"}
+        },
+        methods:{
+            change(){
+                eventBus.$emit("changeGreen",this.old)
+            }
+        },
+        created(){
+            eventBus.$on('changeRed',(val)=>{//页面一加载兄弟1长个耳朵听
+                this.color = val;
+            })
+        }
+    };
+    let brother2 = {
+        template:'<div>{{color}} <button @click="change">变红</button></div>',
+        created(){
+            eventBus.$on('changeGreen',(val)=>{
+                this.color = val;
+            })
+        },
+        methods:{
+             change(){
+                 eventBus.$emit("changeRed",this.old)
+             }
+        },
+        data(){
+            return {color:'红色',old:"红色"}
+        }
+    };
+    let vm = new Vue({
+        el:"#app",
+        data:{
+
+        },
+        components:{
+            brother1,brother2
+        },
+
+    })
+</script>
+</body>
+</html>
